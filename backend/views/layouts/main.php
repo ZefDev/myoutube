@@ -5,8 +5,7 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
+
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
@@ -26,40 +25,16 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = [
-              'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-              'url' => ['/site/logout'],
-              'linkOptions' => [
-                'data-method'=> 'post'
-              ]
-        ];
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
+<div class="wrap h-100 d-flex flex-column">
+    <?php echo $this->render('_header') ?>
+    <main class="d-flex">
+        <?php echo $this->render('_sidebar') ?>
+        <div class="content-wrapper p-3">
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
+    </main>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
 </div>
 
 <footer class="footer">
