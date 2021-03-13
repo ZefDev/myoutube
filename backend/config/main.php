@@ -12,6 +12,8 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+    'language' => 'en-US',
+    'name' => 'mYouTube',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -44,7 +46,8 @@ return [
             'rules' => [
             ],
         ],
-        
+
     ],
     'params' => $params,
+
 ];
